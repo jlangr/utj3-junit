@@ -12,7 +12,7 @@ public class SparseArray<T> {
    public void put(int key, T value) {
       if (value == null) return;
 
-      int index = binarySearch(key, keys, size);
+      var index = binarySearch(key, keys, size);
       if (index != -1 && keys[index] == key)
          values[index] = value;
       else {
@@ -26,12 +26,12 @@ public class SparseArray<T> {
    }
 
    private void insertAfter(int key, T value, int index) {
-      int[] newKeys = new int[INITIAL_SIZE];
-      Object[] newValues = new Object[INITIAL_SIZE];
+      var newKeys = new int[INITIAL_SIZE];
+      var newValues = new Object[INITIAL_SIZE];
 
       copyFromBefore(index, newKeys, newValues);
 
-      int newIndex = index + 1;
+      var newIndex = index + 1;
       newKeys[newIndex] = key;
       newValues[newIndex] = value;
 
@@ -45,7 +45,7 @@ public class SparseArray<T> {
    // END:src
    // START:invariant
    public void checkInvariants() throws InvariantException {
-      long nonNullValues = Arrays.stream(values).filter(Objects::nonNull).count();
+      var nonNullValues = Arrays.stream(values).filter(Objects::nonNull).count();
       if (nonNullValues != size)
          throw new InvariantException("size " + size +
             " does not match value count of " + nonNullValues);
@@ -54,7 +54,7 @@ public class SparseArray<T> {
 
    // START:src
    private void copyFromAfter(int index, int[] newKeys, Object[] newValues) {
-      int start = index + 1;
+      var start = index + 1;
       System.arraycopy(keys, start, newKeys, start + 1, size - start);
       System.arraycopy(values, start, newValues, start + 1, size - start);
    }
@@ -66,7 +66,7 @@ public class SparseArray<T> {
 
    @SuppressWarnings("unchecked")
    public T get(int key) {
-      int index = binarySearch(key, keys, size);
+      var index = binarySearch(key, keys, size);
       if (index != -1 && keys[index] == key)
          return (T)values[index];
       return null;
@@ -76,10 +76,10 @@ public class SparseArray<T> {
       // ...
       // END:src
       int low = 0;
-      int high = size - 1;
+      var high = size - 1;
 
       while (low <= high) {
-         int midIndex = (low + high) / 2;
+         var midIndex = (low + high) / 2;
          if (n > nums[midIndex])
             low = midIndex + 1;
          else if (n < nums[midIndex])
