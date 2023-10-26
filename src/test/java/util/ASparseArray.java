@@ -1,10 +1,10 @@
 package util;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import scratch.*;
+import scratch.ExpectToFail;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -44,8 +44,6 @@ public class ASparseArray{
          assertEquals("seis", array.get(6));
       }
 
-      @ExpectToFail
-//      @Disabled
       // START:test
       // START:testWithInvariantCalls
       @Test
