@@ -17,7 +17,9 @@ public class SparseArray<T> {
          values[index] = value;
       else {
          insertAfter(key, value, index);
-         size++;
+         // END:src
+         // size++; // this fixes the failing tests
+         // START:src
       }
    }
 
