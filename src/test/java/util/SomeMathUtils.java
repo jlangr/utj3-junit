@@ -11,7 +11,7 @@ public class SomeMathUtils {
    @Nested
    class FastHalf {
       @Test
-      void ofZeroIsZero() {
+      void ofZero() {
          assertEquals(0, fastHalf(0));
       }
 
@@ -31,20 +31,20 @@ public class SomeMathUtils {
       }
       //END:test
 
-      //START:fastHalfLargeNumber
-      //START:fastHalfLargeNumberInvert
+//START:fastHalfLargeNumber
+//START:fastHalfLargeNumberInvert
       @Test
       void handlesLargeNumbers() {
          var number = 489_935_889_934_389_890L;
-         //END:fastHalfLargeNumberInvert
+//END:fastHalfLargeNumberInvert
          assertEquals(244_967_944_967_194_945L, fastHalf(number));
-         //END:fastHalfLargeNumber
-         //START:fastHalfLargeNumberInvert
+//END:fastHalfLargeNumber
+//START:fastHalfLargeNumberInvert
          assertEquals(number, fastHalf(number) * 2);
-         //START:fastHalfLargeNumber
+//START:fastHalfLargeNumber
       }
-      //END:fastHalfLargeNumber
-      //START:test
+//END:fastHalfLargeNumber
+//START:test
    }
 }
 //END:test
