@@ -44,6 +44,7 @@ void handlesLargeNumbers() {
 //START:fastHalfLargeNumber
 }
 //END:fastHalfLargeNumber
+//END:fastHalfLargeNumberInvert
 //START:test
    }
 }
