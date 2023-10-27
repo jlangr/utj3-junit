@@ -33,16 +33,16 @@ public class SomeMathUtils {
 
 //START:fastHalfLargeNumber
 //START:fastHalfLargeNumberInvert
-      @Test
-      void handlesLargeNumbers() {
-         var number = 489_935_889_934_389_890L;
+@Test
+void handlesLargeNumbers() {
+   var number = 489_935_889_934_389_890L;
 //END:fastHalfLargeNumberInvert
-         assertEquals(244_967_944_967_194_945L, fastHalf(number));
+   assertEquals(244_967_944_967_194_945L, fastHalf(number));
 //END:fastHalfLargeNumber
 //START:fastHalfLargeNumberInvert
-         assertEquals(number, fastHalf(number) * 2);
+   assertEquals(number, fastHalf(number) * 2);
 //START:fastHalfLargeNumber
-      }
+}
 //END:fastHalfLargeNumber
 //START:test
    }
