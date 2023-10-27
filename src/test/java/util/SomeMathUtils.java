@@ -16,6 +16,16 @@ public class SomeMathUtils {
       }
 
       @Test
+      void handlesZero() {
+         assertEquals(0, fastHalf(0));
+      }
+
+      @Test
+      void handlesNegativeNumbers() {
+         assertEquals(-2, fastHalf(-4));
+      }
+
+      @Test
       void roundsDownOddResults() {
          assertEquals(10, fastHalf(21));
       }
