@@ -11,13 +11,13 @@ public class SomeMathUtils {
    @Nested
    class FastHalf {
       @Test
-      void dividesByTwo() {
-         assertEquals(11, fastHalf(22));
+      void ofZeroIsZero() {
+         assertEquals(0, fastHalf(0));
       }
 
       @Test
-      void handlesZero() {
-         assertEquals(0, fastHalf(0));
+      void roundsDownToZeroWhenOne() {
+         assertEquals(11, fastHalf(22));
       }
 
       @Test
@@ -32,10 +32,16 @@ public class SomeMathUtils {
       //END:test
 
       //START:fastHalfLargeNumber
+      //START:fastHalfLargeNumberInvert
       @Test
       void handlesLargeNumbers() {
          var number = 489_935_889_934_389_890L;
+         //END:fastHalfLargeNumberInvert
+         assertEquals(244_967_944_967_194_945L, fastHalf(number));
+         //END:fastHalfLargeNumber
+         //START:fastHalfLargeNumberInvert
          assertEquals(number, fastHalf(number) * 2);
+         //START:fastHalfLargeNumber
       }
       //END:fastHalfLargeNumber
       //START:test
