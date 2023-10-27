@@ -1,3 +1,4 @@
+//START:class
 package scratch;
 
 import java.util.HashSet;
@@ -14,15 +15,18 @@ public class StringSet {
         ratings.add(rating);
     }
 
+    Set<String> ratings() {
+        return ratings;
+    }
+    //END:class
+
     // START:find
     // START_HIGHLIGHT
     public Set<String> find(Predicate<String> predicate) {
         return ratings.stream().filter(predicate).collect(toSet());
     }
     // END_HIGHLIGHT
-
-    Set<String> ratings() {
-        return ratings;
-    }
     // END:find
+    //START:class
 }
+//END:class

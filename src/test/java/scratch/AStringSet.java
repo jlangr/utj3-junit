@@ -13,7 +13,7 @@ public class AStringSet {
       StringSet set = new StringSet();
       // START:find
       @Test
-      void returnsMatchinStrings() {
+      void returnsMatchingStrings() {
          set.add("alpha");
          set.add("beta");
          set.add("gamma");
