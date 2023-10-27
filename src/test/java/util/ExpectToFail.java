@@ -1,4 +1,4 @@
-package scratch;
+package util;
 
 import java.lang.annotation.*;
 

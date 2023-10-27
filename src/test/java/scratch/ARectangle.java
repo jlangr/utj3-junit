@@ -3,6 +3,7 @@ package scratch;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import util.ExpectToFail;
 
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
