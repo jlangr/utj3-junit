@@ -65,7 +65,7 @@ public class SomeAssertExamples {
 
         var balance = account.getBalance();
 
-        assertEquals( 150, balance);
+        assertEquals(150, balance);
     }
     // END:assertEquals0
 
