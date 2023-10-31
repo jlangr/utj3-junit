@@ -70,13 +70,17 @@ public class SomeAssertExamples {
         assertEquals("acct name", account.getName());
     }
 
+    // START:throws
     @Test
+    // START_HIGHLIGHT
     public void readsFromTestFile() throws IOException {
+    // END_HIGHLIGHT
         var writer = new BufferedWriter(new FileWriter("test.txt"));
         writer.write("test data");
         writer.close();
         // ...
     }
+    // END:throws
 
     @AfterEach
     public void deleteForReadsFromTestFile() {
