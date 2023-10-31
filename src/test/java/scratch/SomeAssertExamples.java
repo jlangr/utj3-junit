@@ -1,6 +1,9 @@
 package scratch;
 
+// START:assertTrue0
 import org.junit.jupiter.api.*;
+// ...
+// END:assertTrue0
 import util.ExpectToFail;
 
 import java.io.BufferedWriter;
@@ -20,40 +23,65 @@ public class SomeAssertExamples {
     }
     // END:before
 
-    // START:assertTrue1
+    // START:assertTrue0
     @Test
-    public void hasPositiveBalance() {
+    public void hasPositiveBalanceIsTrueAfterInitialDeposit() {
         account.deposit(50);
 
+        Assertions.assertTrue(account.hasPositiveBalance());
+    }
+    // ...
+    // END:assertTrue0
+
+    // START:assertTrue1
+    @Test
+    public void hasPositiveBalanceAfterInitialDeposit() {
+        account.deposit(50);
+
+        // START_HIGHLIGHT
         assertTrue(account.hasPositiveBalance());
+        // END_HIGHLIGHT
     }
     // END:assertTrue1
 
     // START:assertTrue2
+    // START:assertEquals0
     @Test
     public void depositIncreasesBalance() {
         var initialBalance = account.getBalance();
 
         account.deposit(100);
 
+        // END:assertEquals0
         assertTrue(account.getBalance() > initialBalance);
+        // START:assertEquals0
         // END:assertTrue2
         assertEquals(100, account.getBalance());
         // START:assertTrue2
     }
     // END:assertTrue2
+    // END:assertEquals0
 
-    @Disabled
-    // START:worthlessAssertMessage
-    @Test
-    public void testWithClutteringAssertionComment() {
-        account.deposit(50);
+    @Nested
+    class SillyAssertMessage {
+        @BeforeEach
+        void setUpBadState() {
+            account.deposit(1);
+        }
 
-        var balance = account.getBalance();
+        @ExpectToFail
+        // START:worthlessAssertMessage
+        @Test
+        public void balanceRepresentsTotalOfDeposits() {
+            account.deposit(50);
+            account.deposit(51);
 
-        assertEquals(50, balance, "account balance is 100");
+            var balance = account.getBalance();
+
+            assertEquals(101, balance, "account balance should be total of deposits");
+        }
+        // END:worthlessAssertMessage
     }
-    // END:worthlessAssertMessage
 
     @Test
     @ExpectToFail
