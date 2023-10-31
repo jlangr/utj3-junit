@@ -13,31 +13,47 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SomeAssertExamples {
     private Account account;
 
+    // START:before
     @BeforeEach
     public void createAccount() {
         account = new Account("an account name");
     }
+    // END:before
 
+    // START:assertTrue1
     @Test
     public void hasPositiveBalance() {
         account.deposit(50);
+
         assertTrue(account.hasPositiveBalance());
     }
+    // END:assertTrue1
 
+    // START:assertTrue2
     @Test
     public void depositIncreasesBalance() {
-        int initialBalance = account.getBalance();
+        var initialBalance = account.getBalance();
+
         account.deposit(100);
+
         assertTrue(account.getBalance() > initialBalance);
+        // END:assertTrue2
         assertEquals(100, account.getBalance());
+        // START:assertTrue2
     }
+    // END:assertTrue2
 
     @Disabled
+    // START:worthlessAssertMessage
     @Test
-    public void testWithWorthlessAssertionComment() {
+    public void testWithClutteringAssertionComment() {
         account.deposit(50);
-        assertEquals(50, account.getBalance(), "account balance is 100");
+
+        var balance = account.getBalance();
+
+        assertEquals(50, balance, "account balance is 100");
     }
+    // END:worthlessAssertMessage
 
     @Test
     @ExpectToFail
@@ -50,14 +66,13 @@ public class SomeAssertExamples {
     @ExpectToFail
     @Disabled
     public void equals() {
-        Account account = new Account("acct namex");
+        var account = new Account("acct namex");
         assertEquals("acct name", account.getName());
     }
 
     @Test
     public void readsFromTestFile() throws IOException {
-        String filename = "test.txt";
-        var writer = new BufferedWriter(new FileWriter(filename));
+        var writer = new BufferedWriter(new FileWriter("test.txt"));
         writer.write("test data");
         writer.close();
         // ...
@@ -82,16 +97,20 @@ public class SomeAssertExamples {
                     () -> account.withdraw(100));
         }
 
+        // START:tryException
         @Test
-        public void throwsWhenWithdrawingTooMuchTry() {
+        public void throwsWhenWithdrawingTooMuch() {
             try {
+                // START_HIGHLIGHT
                 account.withdraw(100);
+                // END_HIGHLIGHT
                 fail();
             }
             catch (InsufficientFundsException expected) {
                 assertEquals("balance only 0", expected.getMessage());
             }
         }
+        // END:tryException
     }
 
     @Test
