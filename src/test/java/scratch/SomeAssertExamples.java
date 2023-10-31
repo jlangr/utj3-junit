@@ -13,14 +13,15 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// START:before
 public class SomeAssertExamples {
-    private Account account;
+    Account account;
 
-    // START:before
     @BeforeEach
     public void createAccount() {
         account = new Account("an account name");
     }
+    // ...
     // END:before
 
     // START:assertTrue0
@@ -149,4 +150,6 @@ public class SomeAssertExamples {
     public void doubles() {
         assertEquals(9.7, 10.0 - 0.3, 0.005);
     }
+    // START:before
 }
+// END:before
