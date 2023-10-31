@@ -49,12 +49,10 @@ public class SomeAssertExamples {
     // START:assertEquals0
     @Test
     public void depositIncreasesBalance() {
-        var initialBalance = account.getBalance();
-
         account.deposit(100);
 
         // END:assertEquals0
-        assertTrue(account.getBalance() > initialBalance);
+        assertTrue(account.getBalance() > account.getBalance());
         // START:assertEquals0
         // END:assertTrue2
         assertEquals(100, account.getBalance());
