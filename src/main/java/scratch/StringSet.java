@@ -8,22 +8,22 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toSet;
 
 public class StringSet {
-    private final Set<String> ratings = new HashSet<>();
+    private final Set<String> strings = new HashSet<>();
 
-    public void add(String rating) {
-        if (rating == null) throw new IllegalArgumentException();
-        ratings.add(rating);
+    public void add(String string) {
+        if (string == null) throw new IllegalArgumentException();
+        strings.add(string);
     }
 
-    Set<String> ratings() {
-        return ratings;
+    Set<String> strings() {
+        return strings;
     }
     //END:class
 
     // START:find
     // START_HIGHLIGHT
     public Set<String> find(Predicate<String> predicate) {
-        return ratings.stream().filter(predicate).collect(toSet());
+        return strings.stream().filter(predicate).collect(toSet());
     }
     // END_HIGHLIGHT
     // END:find

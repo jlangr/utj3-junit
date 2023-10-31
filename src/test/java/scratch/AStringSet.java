@@ -24,13 +24,13 @@ public class AStringSet {
          var results = set.find(s -> s.length() > 4);
          // END_HIGHLIGHT
 
-         var inverseResults = set.ratings().stream()
+         var inverseResults = set.strings().stream()
                  // START_HIGHLIGHT
                  .filter(s -> s.length() <= 4)
                  // END_HIGHLIGHT
                  .collect(Collectors.toSet());
          results.addAll(inverseResults);
-         assertEquals(set.ratings(), results);
+         assertEquals(set.strings(), results);
       }
       // END:find
    }
