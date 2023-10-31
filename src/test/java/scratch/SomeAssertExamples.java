@@ -85,7 +85,7 @@ public class SomeAssertExamples {
 
             var balance = account.getBalance();
 
-            assertEquals(101, balance, "account balance should be total of deposits");
+            assertEquals(101, balance, "account balance must be total of deposits");
         }
         // END:worthlessAssertMessage
     }
