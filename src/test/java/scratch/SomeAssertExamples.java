@@ -46,19 +46,27 @@ public class SomeAssertExamples {
     // END:assertTrue1
 
     // START:assertTrue2
-    // START:assertEquals0
     @Test
     public void depositIncreasesBalance() {
+        var initialBalance = account.getBalance();
         account.deposit(100);
 
-        // END:assertEquals0
-        assertTrue(account.getBalance() > account.getBalance());
-        // START:assertEquals0
-        // END:assertTrue2
-        assertEquals(100, account.getBalance());
-        // START:assertTrue2
+        var balance = account.getBalance();
+
+        assertTrue(balance > initialBalance);
     }
     // END:assertTrue2
+
+    // START:assertEquals0
+    @Test
+    public void depositIncreasesBalanceByAmountOfDeposit() {
+        account.deposit(50);
+        account.deposit(100);
+
+        var balance = account.getBalance();
+
+        assertEquals( 150, balance);
+    }
     // END:assertEquals0
 
     @Nested
