@@ -1,9 +1,6 @@
 package scratch;
 
 // START:assertTrue0
-
-import cards.Card;
-import cards.Deck;
 import org.junit.jupiter.api.*;
 import util.ExpectToFail;
 
@@ -11,7 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,7 +44,7 @@ class SomeAssertExamples {
         // START:assertTrueNot
     }
     // END:assertFalse
-    // START:assertTrueNot
+    // END:assertTrueNot
 
     // START:assertTrue1
     @Test
