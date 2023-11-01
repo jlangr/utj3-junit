@@ -34,6 +34,20 @@ public class SomeAssertExamples {
     // ...
     // END:assertTrue0
 
+    // START:assertFalse
+    @Test
+    void doesNotHavePositiveBalanceWhenAccountCreated() {
+        // END:assertFalse
+        // START:assertTrueNot
+        assertTrue(!account.hasPositiveBalance());
+        // END:assertTrueNot
+        // START:assertFalse
+        assertFalse(account.hasPositiveBalance());
+        // START:assertTrueNot
+    }
+    // END:assertFalse
+    // START:assertTrueNot
+
     // START:assertTrue1
     @Test
     public void hasPositiveBalanceAfterInitialDeposit() {
@@ -59,7 +73,7 @@ public class SomeAssertExamples {
 
     // START:assertEquals0
     @Test
-    public void depositIncreasesBalanceByAmountOfDeposit() {
+    void depositIncreasesBalanceByAmountOfDeposit() {
         account.deposit(50);
         account.deposit(100);
 
@@ -68,6 +82,7 @@ public class SomeAssertExamples {
         assertEquals(150, balance);
     }
     // END:assertEquals0
+
 
     @Nested
     class SillyAssertMessage {
