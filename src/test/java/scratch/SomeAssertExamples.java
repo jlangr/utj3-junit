@@ -14,11 +14,11 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 // START:before
-public class SomeAssertExamples {
+class SomeAssertExamples {
     Account account;
 
     @BeforeEach
-    public void createAccount() {
+    void createAccount() {
         account = new Account("an account name");
     }
     // ...
@@ -26,7 +26,7 @@ public class SomeAssertExamples {
 
     // START:assertTrue0
     @Test
-    public void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+    void hasPositiveBalanceIsTrueAfterInitialDeposit() {
         account.deposit(50);
 
         Assertions.assertTrue(account.hasPositiveBalance());
@@ -50,7 +50,7 @@ public class SomeAssertExamples {
 
     // START:assertTrue1
     @Test
-    public void hasPositiveBalanceAfterInitialDeposit() {
+    void hasPositiveBalanceAfterInitialDeposit() {
         account.deposit(50);
 
         // START_HIGHLIGHT
@@ -61,7 +61,7 @@ public class SomeAssertExamples {
 
     // START:assertTrue2
     @Test
-    public void depositIncreasesBalance() {
+    void depositIncreasesBalance() {
         var initialBalance = account.getBalance();
         account.deposit(100);
 
@@ -94,7 +94,7 @@ public class SomeAssertExamples {
         @ExpectToFail
         // START:worthlessAssertMessage
         @Test
-        public void balanceRepresentsTotalOfDeposits() {
+        void balanceRepresentsTotalOfDeposits() {
             account.deposit(50);
             account.deposit(51);
 
@@ -108,14 +108,14 @@ public class SomeAssertExamples {
     @Test
     @ExpectToFail
     @Disabled
-    public void assertFailure() {
+    void assertFailure() {
         assertTrue(account.getName().startsWith("xyz"));
     }
 
     @Test
     @ExpectToFail
     @Disabled
-    public void equals() {
+    void equals() {
         var account = new Account("acct namex");
         assertEquals("acct name", account.getName());
     }
@@ -123,7 +123,7 @@ public class SomeAssertExamples {
     // START:throws
     @Test
     // START_HIGHLIGHT
-    public void readsFromTestFile() throws IOException {
+    void readsFromTestFile() throws IOException {
     // END_HIGHLIGHT
         var writer = new BufferedWriter(new FileWriter("test.txt"));
         writer.write("test data");
@@ -133,27 +133,27 @@ public class SomeAssertExamples {
     // END:throws
 
     @AfterEach
-    public void deleteForReadsFromTestFile() {
+    void deleteForReadsFromTestFile() {
         new File("test.txt").delete();
     }
 
     @Test
     @Disabled("don't forget me!")
-    public void somethingWeCannotHandleRightNow() {
+    void somethingWeCannotHandleRightNow() {
         // ...
     }
 
     @Nested
     class Exceptions {
         @Test
-        public void exceptionRule() {
+        void exceptionRule() {
             assertThrows(InsufficientFundsException.class,
                     () -> account.withdraw(100));
         }
 
         // START:tryException
         @Test
-        public void throwsWhenWithdrawingTooMuch() {
+        void throwsWhenWithdrawingTooMuch() {
             try {
                 // START_HIGHLIGHT
                 account.withdraw(100);
@@ -168,7 +168,7 @@ public class SomeAssertExamples {
     }
 
     @Test
-    public void doubles() {
+    void doubles() {
         assertEquals(9.7, 10.0 - 0.3, 0.005);
     }
     // START:before
