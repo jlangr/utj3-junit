@@ -8,6 +8,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -166,6 +168,38 @@ class SomeAssertExamples {
     @Test
     void doubles() {
         assertEquals(9.7, 10.0 - 0.3, 0.005);
+    }
+
+    @Nested
+    class AssertSameAndNot {
+        // START:assertNotSame
+        record Customer(String id, String name) {
+            Customer(Customer that) {
+                this(that.id, that.name);
+            }
+        };
+
+        class InMemoryDatabase {
+            Map<String,Customer> data = new HashMap<>();
+
+            void add(String key, Customer value) {
+                // START_HIGHLIGHT
+                data.put(key, new Customer(value));
+                // END_HIGHLIGHT
+            }
+        }
+
+        @Test
+        void objectCopiedWhenAddedToDatabase() {
+            var db = new InMemoryDatabase();
+            var customer = new Customer("1", "Smelt, Inc.");
+
+            db.add("1", customer);
+
+            var retrieved = db.data.get("1");
+            assertNotSame(retrieved, customer);
+        }
+        // END:assertNotSame
     }
     // START:before
 }
