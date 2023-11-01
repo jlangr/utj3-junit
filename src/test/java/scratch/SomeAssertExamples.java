@@ -182,24 +182,46 @@ class SomeAssertExamples {
         class InMemoryDatabase {
             Map<String,Customer> data = new HashMap<>();
 
-            void add(String key, Customer value) {
+            void add(Customer customer) {
                 // START_HIGHLIGHT
-                data.put(key, new Customer(value));
+                data.put(customer.id(), new Customer(customer));
                 // END_HIGHLIGHT
             }
-        }
+            // END:assertNotSame
 
+            void addBad(Customer customer) {
+                // START:assertNotSameBad
+                data.put(customer.id(), customer);
+                // END:assertNotSameBad
+            }
+            // START:assertNotSame
+        }
+        // END:assertNotSame
+
+        // START:assertNotSameTest
         @Test
         void objectCopiedWhenAddedToDatabase() {
             var db = new InMemoryDatabase();
             var customer = new Customer("1", "Smelt, Inc.");
 
-            db.add("1", customer);
+            db.add(customer);
 
             var retrieved = db.data.get("1");
             assertNotSame(retrieved, customer);
         }
-        // END:assertNotSame
+        // END:assertNotSameTest
+
+        @ExpectToFail
+        @Test
+        void objectCopiedWhenAddedToDatabaseFailing() {
+            var db = new InMemoryDatabase();
+            var customer = new Customer("1", "Smelt, Inc.");
+
+            db.addBad(customer);
+
+            var retrieved = db.data.get("1");
+            assertNotSame(retrieved, customer);
+        }
     }
     // START:before
 }
