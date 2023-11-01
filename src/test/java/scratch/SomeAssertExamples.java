@@ -1,15 +1,17 @@
 package scratch;
 
 // START:assertTrue0
+
+import cards.Card;
+import cards.Deck;
 import org.junit.jupiter.api.*;
-// ...
-// END:assertTrue0
 import util.ExpectToFail;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -83,7 +85,6 @@ class SomeAssertExamples {
     }
     // END:assertEquals0
 
-
     @Nested
     class SillyAssertMessage {
         @BeforeEach
@@ -124,7 +125,7 @@ class SomeAssertExamples {
     @Test
     // START_HIGHLIGHT
     void readsFromTestFile() throws IOException {
-    // END_HIGHLIGHT
+        // END_HIGHLIGHT
         var writer = new BufferedWriter(new FileWriter("test.txt"));
         writer.write("test data");
         writer.close();
@@ -159,8 +160,7 @@ class SomeAssertExamples {
                 account.withdraw(100);
                 // END_HIGHLIGHT
                 fail();
-            }
-            catch (InsufficientFundsException expected) {
+            } catch (InsufficientFundsException expected) {
                 assertEquals("balance only 0", expected.getMessage());
             }
         }
