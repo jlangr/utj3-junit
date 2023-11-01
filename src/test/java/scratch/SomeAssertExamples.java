@@ -33,10 +33,10 @@ class SomeAssertExamples {
     // END:assertTrue0
 
     // START:assertFalse
+    // START:assertTrueNot
     @Test
     void doesNotHavePositiveBalanceWhenAccountCreated() {
         // END:assertFalse
-        // START:assertTrueNot
         assertTrue(!account.hasPositiveBalance());
         // END:assertTrueNot
         // START:assertFalse
