@@ -4,7 +4,7 @@ package persistence;
 import org.junit.jupiter.api.Test;
 import util.ExpectToFail;
 
-import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AnInMemoryDatabase {
     @Test
@@ -31,5 +31,26 @@ class AnInMemoryDatabase {
         assertNotSame(retrieved, customer);
     }
 // START:assertNotSameTest
+
+    // START:assertNull
+    InMemoryDatabase db = new InMemoryDatabase();
+
+    @Test
+    void returnsCustomerCorrespondingToId() {
+        var customer = new Customer("42", "Mr Creosote");
+        db.add(customer);
+
+        var retrieved = db.get("42");
+
+        assertEquals(customer, retrieved);
+    }
+
+    @Test
+    void returnsNotNullForNonexistentKey() {
+        // START_HIGHLIGHT
+        assertNull(db.get("42"));
+        // END_HIGHLIGHT
+    }
+    // END:assertNull
 }
 // END:assertNotSameTest
