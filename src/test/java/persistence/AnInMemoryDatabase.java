@@ -1,3 +1,4 @@
+// START:assertNotSameTest
 package persistence;
 
 import org.junit.jupiter.api.Test;
@@ -6,7 +7,6 @@ import util.ExpectToFail;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 class AnInMemoryDatabase {
-    // START:assertNotSameTest
     @Test
     void objectCopiedWhenAddedToDatabase() {
         var db = new InMemoryDatabase();
@@ -30,4 +30,6 @@ class AnInMemoryDatabase {
         var retrieved = db.data.get("1");
         assertNotSame(retrieved, customer);
     }
+// START:assertNotSameTest
 }
+// END:assertNotSameTest
