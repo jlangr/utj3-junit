@@ -30,7 +30,7 @@ class AnInMemoryDatabase {
         var retrieved = db.data.get("1");
         assertNotSame(retrieved, customer);
     }
-// START:assertNotSameTest
+// END:assertNotSameTest
 
     // START:assertNull
     InMemoryDatabase db = new InMemoryDatabase();
@@ -52,5 +52,6 @@ class AnInMemoryDatabase {
         // END_HIGHLIGHT
     }
     // END:assertNull
+    //START:assertNotSameTest
 }
 // END:assertNotSameTest
