@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.*;
 
 // START:before
@@ -171,16 +172,16 @@ class SomeAssertExamples {
     }
 
     @Nested
-    class AssertSameAndNot {
+    class AssertNotSame {
         // START:assertNotSame
         record Customer(String id, String name) {
             Customer(Customer that) {
                 this(that.id, that.name);
             }
-        };
+        }
 
         class InMemoryDatabase {
-            Map<String,Customer> data = new HashMap<>();
+            Map<String, Customer> data = new HashMap<>();
 
             void add(Customer customer) {
                 // START_HIGHLIGHT
@@ -222,6 +223,49 @@ class SomeAssertExamples {
             var retrieved = db.data.get("1");
             assertNotSame(retrieved, customer);
         }
+    }
+
+    @Nested
+    class AssertSame {
+        // https://www.developer.com/design/working-with-design-patterns-flyweight/
+        // START:assertSameProd
+        public record Time(byte hour, byte minute) {
+            static String key(byte hour, byte minute) {
+                return format("%d:%d", hour, minute);
+            }
+
+            @Override
+            public String toString() {
+                return key(hour, minute);
+            }
+        }
+
+        public class TimePool {
+            private static Map<String,Time> times = new HashMap<>();
+
+            public static Time get(byte hour, byte minute) {
+                return times.computeIfAbsent(Time.key(hour, minute),
+                        k -> new Time(hour, minute));
+            }
+        }
+        // END:assertSameProd
+
+        // START:assertSameTest
+        byte eleventhHour = 11;
+        byte fiveMinutes = 5;
+
+        @Test
+        void create() {
+            assertEquals("11:5",
+                    TimePool.get(eleventhHour, fiveMinutes).toString());
+        }
+
+        @Test
+        void reuseOfMemory() {
+            assertSame(TimePool.get(eleventhHour, fiveMinutes),
+                    TimePool.get(eleventhHour, fiveMinutes));
+        }
+        // END:assertSameTest
     }
     // START:before
 }
