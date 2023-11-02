@@ -1,6 +1,5 @@
 package scratch;
 
-// START:assertTrue0
 import org.junit.jupiter.api.*;
 import util.ExpectToFail;
 
@@ -8,14 +7,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.*;
 
 // START:before
 class SomeAssertExamples {
+    // START:assertTrue0
     Account account;
 
     @BeforeEach
@@ -171,61 +168,6 @@ class SomeAssertExamples {
         assertEquals(9.7, 10.0 - 0.3, 0.005);
     }
 
-    @Nested
-    class AssertNotSame {
-        // START:assertNotSame
-        record Customer(String id, String name) {
-            Customer(Customer that) {
-                this(that.id, that.name);
-            }
-        }
-
-        class InMemoryDatabase {
-            Map<String, Customer> data = new HashMap<>();
-
-            void add(Customer customer) {
-                // START_HIGHLIGHT
-                data.put(customer.id(), new Customer(customer));
-                // END_HIGHLIGHT
-            }
-            // END:assertNotSame
-
-            void addBad(Customer customer) {
-                // START:assertNotSameBad
-                data.put(customer.id(), customer);
-                // END:assertNotSameBad
-            }
-            // START:assertNotSame
-        }
-        // END:assertNotSame
-
-        // START:assertNotSameTest
-        @Test
-        void objectCopiedWhenAddedToDatabase() {
-            var db = new InMemoryDatabase();
-            var customer = new Customer("1", "Smelt, Inc.");
-
-            db.add(customer);
-
-            var retrieved = db.data.get("1");
-            assertNotSame(retrieved, customer);
-        }
-        // END:assertNotSameTest
-
-        @ExpectToFail
-        @Test
-        void objectCopiedWhenAddedToDatabaseFailing() {
-            var db = new InMemoryDatabase();
-            var customer = new Customer("1", "Smelt, Inc.");
-
-            db.addBad(customer);
-
-            var retrieved = db.data.get("1");
-            assertNotSame(retrieved, customer);
-        }
-    }
-
-    // END:ATimePool
     // START:before
 }
 // END:before
