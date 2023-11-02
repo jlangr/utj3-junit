@@ -1,4 +1,4 @@
-package scratch;
+package time;
 
 import java.util.HashMap;
 import java.util.Map;

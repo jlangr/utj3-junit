@@ -1,4 +1,4 @@
-package scratch;
+package time;
 
 import static java.lang.String.format;
 

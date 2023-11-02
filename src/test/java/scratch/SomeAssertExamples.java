@@ -225,31 +225,6 @@ class SomeAssertExamples {
         }
     }
 
-    // https://www.developer.com/design/working-with-design-patterns-flyweight/
-    @Nested
-    // START:ATimePool
-    class ATimePool {
-        @BeforeEach
-        void resetPool() {
-            TimePool.reset();
-        }
-
-        @Test
-        void getReturnsTimeInstance() {
-            byte four = 4;
-            byte twenty = 20;
-            assertEquals(new Time(four, twenty), TimePool.get(four, twenty));
-        }
-
-        @Test
-        void getWithSameValuesReturnsSharedInstance() {
-            byte ten = 10;
-            byte five = 5;
-            // START_HIGHLIGHT
-            assertSame(TimePool.get(ten, five), TimePool.get(ten, five));
-            // END_HIGHLIGHT
-        }
-    }
     // END:ATimePool
     // START:before
 }
