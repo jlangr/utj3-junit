@@ -225,48 +225,32 @@ class SomeAssertExamples {
         }
     }
 
+    // https://www.developer.com/design/working-with-design-patterns-flyweight/
     @Nested
-    class AssertSame {
-        // https://www.developer.com/design/working-with-design-patterns-flyweight/
-        // START:assertSameProd
-        public record Time(byte hour, byte minute) {
-            static String key(byte hour, byte minute) {
-                return format("%d:%d", hour, minute);
-            }
-
-            @Override
-            public String toString() {
-                return key(hour, minute);
-            }
-        }
-
-        public class TimePool {
-            private static Map<String,Time> times = new HashMap<>();
-
-            public static Time get(byte hour, byte minute) {
-                return times.computeIfAbsent(Time.key(hour, minute),
-                        k -> new Time(hour, minute));
-            }
-        }
-        // END:assertSameProd
-
-        // START:assertSameTest
-        byte eleventhHour = 11;
-        byte fiveMinutes = 5;
-
-        @Test
-        void create() {
-            assertEquals("11:5",
-                    TimePool.get(eleventhHour, fiveMinutes).toString());
+    // START:ATimePool
+    class ATimePool {
+        @BeforeEach
+        void resetPool() {
+            TimePool.reset();
         }
 
         @Test
-        void reuseOfMemory() {
-            assertSame(TimePool.get(eleventhHour, fiveMinutes),
-                    TimePool.get(eleventhHour, fiveMinutes));
+        void getReturnsTimeInstance() {
+            byte four = 4;
+            byte twenty = 20;
+            assertEquals(new Time(four, twenty), TimePool.get(four, twenty));
         }
-        // END:assertSameTest
+
+        @Test
+        void getWithSameValuesReturnsSharedInstance() {
+            byte ten = 10;
+            byte five = 5;
+            // START_HIGHLIGHT
+            assertSame(TimePool.get(ten, five), TimePool.get(ten, five));
+            // END_HIGHLIGHT
+        }
     }
+    // END:ATimePool
     // START:before
 }
 // END:before
