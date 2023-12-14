@@ -1,6 +1,7 @@
 // START:assertNotSameTest
 package persistence;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import util.ExpectToFail;
 
@@ -52,6 +53,24 @@ class AnInMemoryDatabase {
         // END_HIGHLIGHT
     }
     // END:assertNull
+
+    @Nested
+    class Silliness {
+        // START:assertNotNull
+        @Test
+        void returnsCustomerCorrespondingToId() {
+            var customer = new Customer("42", "Mr Creosote");
+            // START_HIGHLIGHT
+            assertNotNull(customer);
+            // END_HIGHLIGHT
+            db.add(customer);
+
+            var retrieved = db.get("42");
+
+            assertEquals(customer, retrieved);
+        }
+        // END:assertNotNull
+    }
     //START:assertNotSameTest
 }
 // END:assertNotSameTest
