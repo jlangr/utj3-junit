@@ -134,7 +134,7 @@ class AnAccount {
       // START:lambdaException
       @Test
       void throwsWhenWithdrawingTooMuch() {
-         var thrown = assertThrows(Exception.class,
+         var thrown = assertThrows(InsufficientFundsException.class,
             () -> account.withdraw(100));
          assertEquals("balance only 0", thrown.getMessage());
       }
