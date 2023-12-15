@@ -112,25 +112,34 @@ class AnAccount {
       assertEquals("acct name", account.getName());
    }
 
-   @Test
-   void exceptionRule() {
-      assertThrows(InsufficientFundsException.class,
-         () -> account.withdraw(100));
+   @Nested
+   class OldSchoolExceptions {
+      // START:tryException
+      @Test
+      void throwsWhenWithdrawingTooMuch() {
+         try {
+            // START_HIGHLIGHT
+            account.withdraw(100);
+            // END_HIGHLIGHT
+            fail();
+         } catch (InsufficientFundsException expected) {
+            assertEquals("balance only 0", expected.getMessage());
+         }
+      }
+      // END:tryException
    }
 
-   // START:tryException
-   @Test
-   void throwsWhenWithdrawingTooMuch() {
-      try {
-         // START_HIGHLIGHT
-         account.withdraw(100);
-         // END_HIGHLIGHT
-         fail();
-      } catch (InsufficientFundsException expected) {
-         assertEquals("balance only 0", expected.getMessage());
+   @Nested
+   class NewSchoolExceptions {
+      // START:lambdaException
+      @Test
+      void throwsWhenWithdrawingTooMuch() {
+         var thrown = assertThrows(InsufficientFundsException.class,
+            () -> account.withdraw(100));
+         assertEquals("balance only 0", thrown.getMessage());
       }
+      // END:lambdaException
    }
-   // END:tryException
 
    // START:before
 }

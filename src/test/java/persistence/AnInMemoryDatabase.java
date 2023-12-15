@@ -61,7 +61,7 @@ class AnInMemoryDatabase {
         void returnsCustomerCorrespondingToId() {
             var customer = new Customer("42", "Mr Creosote");
             // START_HIGHLIGHT
-            assertNotNull(customer);
+            assertNotNull(customer); // bogus! this can't fail
             // END_HIGHLIGHT
             db.add(customer);
 
