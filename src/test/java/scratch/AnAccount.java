@@ -113,7 +113,7 @@ class AnAccount {
    }
 
    @Nested
-   class OldSchoolExceptions {
+   class TryCatchExceptions {
       // START:tryException
       @Test
       void throwsWhenWithdrawingTooMuch() {
