@@ -12,12 +12,14 @@ public class Account {
         balance += dollars;
     }
 
+    // START:withdraw
     void withdraw(int dollars) {
         if (balance < dollars) {
             throw new InsufficientFundsException("balance only " + balance);
         }
         balance -= dollars;
     }
+    // END:withdraw
 
     public String getName() {
         return name;
