@@ -32,4 +32,7 @@ public class Account {
    public boolean hasPositiveBalance() {
       return balance > 0;
    }
+
+   public void setInterestRate(double rate) {
+   }
 }

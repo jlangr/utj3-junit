@@ -1,45 +1,102 @@
 package scratch;
 
 // START:AFundedAccount
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-public class AFundedAccount {
-   Account account = new Account("funded");
+class AFundedAccount {
+   Account account = new Account("Jeff");
+   AFundedAccount() {
+      // END:AFundedAccount
+      System.out.printf("AFundedAccount(); %s balance = %d%n", account.name, account.balance);
+      // START:AFundedAccount
+   }
 
    @BeforeEach
-   void getsFunded() {
+   void fundAccount() {
+      // END:AFundedAccount
+      System.out.println("\t\t@BeforeEach::fundAccount");
+      // START:AFundedAccount
       account.deposit(1000);
    }
 
+   @BeforeAll
+   static void clearAccountRegistry() {
+      // END:AFundedAccount
+      System.out.println("@BeforeAll::clearAccountRegistry");
+      // START:AFundedAccount
+      // ...
+   }
+
    @Nested
-   class OnDailyBasis {
+   class InterestAccrual {
+      // END:AFundedAccount
+      {
+         System.out.println("\tOnDailyBasis");
+      }
+      // START:AFundedAccount
+
+      @BeforeEach
+      void setInterestRate() {
+         // END:AFundedAccount
+         System.out.println("\t\t@BeforeEach::setInterestRate");
+         // START:AFundedAccount
+         account.setInterestRate(0.027d);
+      }
+
       @Test
-      public void accruesInterestWhenMinimumMet() {
+      void occursWhenMinimumMet() {
+         // END:AFundedAccount
+         System.out.println("\t\toccursWhenMinimumMet");
+         // START:AFundedAccount
          // ...
       }
 
       @Test
-      public void accruesNoInterestWhenMinimumNotMet() {
+      void doesNotOccurWhenMinimumNotMet() {
+         // END:AFundedAccount
+         System.out.println("\t\tdoesNotOccurWhenMinimumNotMet");
+         // START:AFundedAccount
+         // ...
+      }
+
+      @Test
+      void isReconciledWithMasterAccount() {
+         // END:AFundedAccount
+         System.out.println("\t\taccruesNoInterestWhenMinimumMet");
+         // START:AFundedAccount
          // ...
       }
    }
 
    @Nested
    class WhenWithdrawing {
+      // END:AFundedAccount
+      {
+         System.out.println("\tWhenWithdrawing");
+      }
+      // START:AFundedAccount
+
       @Test
-      public void reducesAccountBalance() {
+      void reducesAccountBalance() {
+         // END:AFundedAccount
+         System.out.println("\t\treducesAccountBalance");
+         // START:AFundedAccount
          // ...
       }
 
       @Test
-      public void throwsWhenAmountExceedsBalance() {
+      void throwsWhenAmountExceedsBalance() {
+         // END:AFundedAccount
+         System.out.println("\t\tthrowsWhenAmountExceedsBalance");
+         // START:AFundedAccount
          // ...
       }
 
       @Test
       void notifiesIRSWhenAmountExceedsThreshold() {
+         // END:AFundedAccount
+         System.out.println("\t\tnotifiesIRSWhenAmountExceedsThreshold");
+         // START:AFundedAccount
          // ...
       }
    }
