@@ -1,6 +1,7 @@
 package util;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Objects;
 
 // START:src
 public class SparseArray<T> {
@@ -70,7 +71,7 @@ public class SparseArray<T> {
    public T get(int key) {
       var index = binarySearch(key, keys, size);
       if (index != -1 && keys[index] == key)
-         return (T)values[index];
+         return (T) values[index];
       return null;
    }
 

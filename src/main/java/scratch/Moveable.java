@@ -1,5 +1,5 @@
 package scratch;
 
 public interface Moveable {
-    int currentSpeedInMph();
+   int currentSpeedInMph();
 }

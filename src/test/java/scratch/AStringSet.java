@@ -11,6 +11,7 @@ public class AStringSet {
    @Nested
    class FindViaPredicate {
       StringSet set = new StringSet();
+
       // START:find
       @Test
       void returnsMatchingStrings() {
@@ -25,10 +26,10 @@ public class AStringSet {
          // END_HIGHLIGHT
 
          var inverseResults = set.strings().stream()
-                 // START_HIGHLIGHT
-                 .filter(s -> s.length() <= 4)
-                 // END_HIGHLIGHT
-                 .collect(Collectors.toSet());
+            // START_HIGHLIGHT
+            .filter(s -> s.length() <= 4)
+            // END_HIGHLIGHT
+            .collect(Collectors.toSet());
          results.addAll(inverseResults);
          assertEquals(set.strings(), results);
       }

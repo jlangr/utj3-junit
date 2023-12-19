@@ -14,7 +14,7 @@ public class Rectangle {
    }
 
    public int area() {
-      return (int)(Math.abs(origin.x() - opposite.x()) *
+      return (int) (Math.abs(origin.x() - opposite.x()) *
          Math.abs(origin.y() - opposite.y()));
    }
 

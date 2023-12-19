@@ -21,16 +21,16 @@ class ARectangle {
    boolean constrainsSidesTo(Rectangle rect, int length) {
       return
          Math.abs(rect.origin().x() - rect.opposite().x()) <= length &&
-         Math.abs(rect.origin().y() - rect.opposite().y()) <= length;
+            Math.abs(rect.origin().y() - rect.opposite().y()) <= length;
    }
 
    @Test
    void answersArea() {
-      rectangle = new Rectangle(new Point(5, 5), new Point (15, 10));
+      rectangle = new Rectangle(new Point(5, 5), new Point(15, 10));
       assertEquals(50, rectangle.area());
    }
 
-// END:aRectangle
+   // END:aRectangle
 //   @Disabled
    @ExpectToFail
 // START:aRectangle
