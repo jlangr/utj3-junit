@@ -28,7 +28,7 @@ class AFundedAccount {
    }
 
    @Nested
-   class InterestAccrual {
+   class AccruingInterest {
       // END:AFundedAccount
       {
          System.out.println("\tOnDailyBasis");
@@ -69,7 +69,7 @@ class AFundedAccount {
    }
 
    @Nested
-   class WhenWithdrawing {
+   class Withdrawal {
       // END:AFundedAccount
       {
          System.out.println("\tWhenWithdrawing");
