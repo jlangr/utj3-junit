@@ -31,7 +31,7 @@ class AFundedAccount {
    class AccruingInterest {
       // END:AFundedAccount
       {
-         System.out.println("\tOnDailyBasis");
+         System.out.println("Accruing Interest");
       }
       // START:AFundedAccount
 
@@ -72,7 +72,7 @@ class AFundedAccount {
    class Withdrawal {
       // END:AFundedAccount
       {
-         System.out.println("\tWhenWithdrawing");
+         System.out.println("\tWithdrawal");
       }
       // START:AFundedAccount
 
