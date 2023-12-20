@@ -31,7 +31,7 @@ class AFundedAccount {
    class AccruingInterest {
       // END:AFundedAccount
       {
-         System.out.println("Accruing Interest");
+         System.out.println("\tAccruing Interest");
       }
       // START:AFundedAccount
 
