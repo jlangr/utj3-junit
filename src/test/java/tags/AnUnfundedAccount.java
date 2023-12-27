@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 // ...
 
 @Tag("account")
-public class AnUnfundedAccount {
+class AnUnfundedAccount {
    // ...
 
    @Test
