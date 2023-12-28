@@ -30,7 +30,9 @@ class ARomanNumberConverter {
    // START:Parameterized
    @ParameterizedTest
    @CsvSource({
+      // START_HIGHLIGHT
       "1,    I",
+      // END_HIGHLIGHT
       "2,    II",
       "3,    III",
       "10,   X",
@@ -42,7 +44,9 @@ class ARomanNumberConverter {
       "999,  CMXCIX",
       "444,  CDXLIVI",
    })
+   // START_HIGHLIGHT
    void convertAll(int arabic, String roman) {
+      // END_HIGHLIGHT
       assertEquals(roman, converter.toRoman(arabic));
    }
    // END:Parameterized
