@@ -1,8 +1,10 @@
 package util;
 
+import java.util.Arrays;
+
+// START:RomanNumberConverter
 public class RomanNumberConverter {
-   record Digit(int arabic, String roman) {
-   }
+   record Digit(int arabic, String roman) {}
 
    Digit[] conversions = {
       new Digit(1000, "M"),
@@ -21,13 +23,14 @@ public class RomanNumberConverter {
    };
 
    public String toRoman(int arabic) {
-      var remaining = arabic;
-      var roman = "";
-      for (var conversion : conversions) {
-         var digitsRequired = remaining / conversion.arabic();
-         roman += conversion.roman().repeat(digitsRequired);
-         remaining -= digitsRequired * conversion.arabic();
-      }
-      return roman;
+      return Arrays.stream(conversions).reduce(
+         new Digit(arabic, ""),
+         (acc, conversion) -> {
+            var digitsRequired = acc.arabic / conversion.arabic;
+            return new Digit(
+               acc.arabic - digitsRequired * conversion.arabic,
+               acc.roman + conversion.roman.repeat(digitsRequired));
+         }).roman();
    }
 }
+// END:RomanNumberConverter
