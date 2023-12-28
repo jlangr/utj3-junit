@@ -5,9 +5,6 @@ package tags;
 import org.junit.jupiter.api.Tag;
 // END_HIGHLIGHT
 import org.junit.jupiter.api.Test;
-import persistence.InMemoryDatabase;
-
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 class AnInMemoryDatabase {
    // ...
@@ -16,10 +13,8 @@ class AnInMemoryDatabase {
    // END_HIGHLIGHT
    @Test
    void objectCopiedWhenAddedToDatabaseFailing() {
-      var db = new InMemoryDatabase();
       // ...
    }
    // ...
-
 }
 // END:tags
