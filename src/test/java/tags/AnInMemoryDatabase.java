@@ -1,9 +1,10 @@
 package tags;
 
 // START:tags
+// START_HIGHLIGHT
 import org.junit.jupiter.api.Tag;
+// END_HIGHLIGHT
 import org.junit.jupiter.api.Test;
-import persistence.Customer;
 import persistence.InMemoryDatabase;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
