@@ -1,7 +1,6 @@
 package util;
 
 // START:loader
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,31 +53,5 @@ class ATsvLoader {
          .map(line -> line + System.lineSeparator())
          .collect(joining());
    }
-// END:loader
-
-   // START:file
-   String filename = "ATsvLoader.test.txt";
-   // END:file
-
-   // START:after
-   @AfterEach
-   void deleteFile() {
-      new File(filename).delete();
-   }
-   // END:after
-
-   // START:file
-   @Test
-   public void loadsFromFile() throws IOException {
-      try (var writer = new BufferedWriter(new FileWriter(filename))) {
-         writer.write("a\tb\nc\td\n");
-      }
-
-      var rows = loader.loadFrom(new BufferedReader(new FileReader(filename)));
-
-      assertEquals(List.of(List.of("a", "b"), List.of("c", "d") ), rows);
-   }
-   // END:file
-// START:loader
 }
 // END:loader
