@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static util.IOUtil.bufferedReaderOn;
+import static util.IOUtils.bufferedReaderOn;
 
 // START:after
 class SomeIOUtils {
