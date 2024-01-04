@@ -61,5 +61,11 @@ class SomeIOUtils {
       assertThrows(RuntimeException.class, () ->
          bufferedReaderOn("nonexistentFilename.txt"));
    }
+
+   // END:utils
+   // START:after
+   // ...
+   // END:after
+   // START:utils
 }
 // END:utils
