@@ -34,12 +34,9 @@ class ATsvLoader {
 
    @Test
    public void loadsMultipleColumnsMultipleRows() {
-      var rows = loader.loadFrom(bufferedReaderOn("abc\tdef\nuvw\txyz"));
-
-      assertEquals(List.of(
-         List.of("abc", "def"),
-         List.of("uvw", "xyz")
-      ), rows);
+      assertEquals(
+         List.of(List.of("abc", "def"), List.of("uvw", "xyz")),
+         loader.loadFrom(bufferedReaderOn("abc\tdef\nuvw\txyz")));
    }
 
    private BufferedReader bufferedReaderOn(String... lines) {
