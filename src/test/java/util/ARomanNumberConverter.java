@@ -26,7 +26,7 @@ class ARomanNumberConverter {
       assertEquals("III", converter.toRoman(3));
    }
 
-   // zzz ... this is tedious and mouthy!
+   // ... so wordy!
    // END:Roman
 
    // START:Parameterized
