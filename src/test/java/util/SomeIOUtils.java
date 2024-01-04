@@ -26,10 +26,12 @@ class SomeIOUtils {
       String filename = "SomeIOUtils.test.txt";
 
       // END:utils
+      // START_HIGHLIGHT
       @AfterEach
       void deleteFile() {
          new File(filename).delete();
       }
+      // END_HIGHLIGHT
 
       // START:utils
       @Test
