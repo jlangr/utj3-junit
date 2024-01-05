@@ -1,17 +1,13 @@
 package util;
 
-// START:after
-import org.junit.jupiter.api.AfterEach;
-// ...
-// END:after
-// START:utils
-import org.junit.jupiter.api.Nested;
+// START:SomeIOUtils
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,53 +15,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static util.IOUtils.bufferedReaderOn;
 
-// START:after
 class SomeIOUtils {
-   @Nested
-   class BufferedReaderOnWithLiveFile {
-      String filename = "SomeIOUtils.test.txt";
+   @Test
+   void createsBufferedReaderOnFile(@TempDir Path tempDir) throws IOException {
+      var path = tempDir.resolve("SomeIOUtils.test.txt");
+      Files.write(path, List.of("a", "b"), StandardCharsets.UTF_8);
 
-      // END:utils
-      // START_HIGHLIGHT
-      @AfterEach
-      void deleteFile() {
-         new File(filename).delete();
-      }
-      // END_HIGHLIGHT
+      var reader = bufferedReaderOn(path.toString());
 
-      // START:utils
-      @Test
-      void createsBufferedReaderOnFile() throws IOException {
-         // END:utils
-         // ...
-         // END:after
-         // START:utils
-         try (var writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write("a\nb");
-         }
-
-         var reader = bufferedReaderOn(filename);
-
-         var result = reader.lines().collect(Collectors.toList());
-         assertEquals(List.of("a", "b"), result);
-         // START:after
-      }
+      var result = reader.lines().collect(Collectors.toList());
+      assertEquals(List.of("a", "b"), result);
    }
-   // END:utils
-   // ...
-   // END:after
-   // START:utils
 
    @Test
    void rethrowsExceptionsAsUnchecked() {
       assertThrows(RuntimeException.class, () ->
          bufferedReaderOn("nonexistentFilename.txt"));
    }
-
-   // END:utils
-   // START:after
-   // ...
-   // END:after
-   // START:utils
 }
-// END:utils
+// END:SomeIOUtils
