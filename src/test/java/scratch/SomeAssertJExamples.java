@@ -1,85 +1,142 @@
 package scratch;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import util.ExpectToFail;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.time.Month.MAY;
+import static java.util.regex.Pattern.compile;
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SomeAssertJExamples {
-   @Test
-   @ExpectToFail
-   @Disabled
-   public void matchesFailure() {
-//        assertThat(account.getName(), startsWith("xyz"));
-   }
+    String name = "my big fat acct";
 
-   @Test
-   public void variousMatcherTests() {
-      Account account = new Account("my big fat acct");
-//        assertThat(account.getName(), is(equalTo("my big fat acct")));
-//
-//        assertThat(account.getName(), allOf(startsWith("my"), endsWith("acct")));
-//
-//        assertThat(account.getName(), anyOf(startsWith("my"), endsWith("loot")));
-//
-//        assertThat(account.getName(), not(equalTo("plunderings")));
-//
-//        assertThat(account.getName(), is(not(nullValue())));
-//        assertThat(account.getName(), is(notNullValue()));
-//
-//        assertThat(account.getName(), isA(String.class));
-//
-//        assertThat(account.getName(), is(notNullValue())); // not helpful
-//        assertThat(account.getName(), equalTo("my big fat acct"));
-   }
+    @Nested
+    class StringMatching {
+        @Test
+        void equality() {
+            // START:equality
+            assertThat(name).isEqualTo("my big fat acct");
+            // END:equality
+        }
 
-   @Test
-   @SuppressWarnings("unchecked")
-   public void items() {
-      List<String> names = new ArrayList<>();
-      names.add("Moe");
-      names.add("Larry");
-      names.add("Curly");
+        @Test
+        void notEqual() {
+            // START:notEqual
+            assertThat(name).isNotEqualTo("plunderings");
+            // END:notEqual
+        }
 
-//        assertThat(names, hasItem("Curly"));
-//
-//        assertThat(names, hasItems("Curly", "Moe"));
-//
-//        assertThat(names, hasItem(endsWith("y")));
-//
-//        assertThat(names, hasItems(endsWith("y"), startsWith("C"))); //warning!
-//
-//        assertThat(names, not(everyItem(endsWith("y"))));
-   }
+        @Test
+        void type() {
+            // START:type
+            assertThat(name).isInstanceOf(String.class);
+            // END:type
+        }
 
-   @Test
-   @ExpectToFail
-   @Disabled
-   public void location() {
-      Point point = new Point(4, 5);
+        @Test
+        void regex() {
+            // START:regex
+            assertThat(name).containsPattern(
+                compile("\\s+[big fat|small]\\s*"));
+            // END:regex
+        }
 
-      // WTF why do JUnit matches not include closeTo
-//      assertThat(point.x, closeTo(3.6, 0.2));
-//      assertThat(point.y, closeTo(5.1, 0.2));
+        @Test
+        void chainedMatchers() {
+            // START:chained
+            assertThat(name)
+                .startsWith("my")
+                .endsWith("acct");
+            // END:chained
+        }
 
-//        assertThat(point, isNear(3.6, 5.1));
-   }
+        @ExpectToFail
+        @Test
+        public void matchesFailure() {
+            // START:failure
+            assertThat(name).containsPattern(
+                compile("^my\\s+[big fat|small]\\s*\\w+$"));
+            // END:failure
+        }
+    }
 
+    @Nested
+    class ListContainmentAndSubsetPredicates {
+        // START:lists
+        @Test
+        public void simpleListTests() {
+            var names = List.of("Moe", "Larry", "Curly");
 
-   @Test
-   public void moreMatcherTests() {
-      Account account = new Account(null);
-//        assertThat(account.getName(), is(nullValue()));
-   }
+            assertThat(names).contains("Curly");
+            assertThat(names).contains("Curly", "Moe");
+            assertThat(names).anyMatch(name -> name.endsWith("y"));
+            assertThat(names).allMatch(name -> name.length() < 6);
 
+            // END:lists
+            // START:listsFailure
+            assertThat(names).allMatch(name -> name.length() < 5);
+            // END:listsFailure
+            // START:lists
+        }
+        // END:lists
+    }
 
-   @Test
-   public void sameInstance() {
-      Account a = new Account("a");
-      Account aPrime = new Account("a");
-      // TODO why needs to be fully qualified??
-//        assertThat(a, not(sameInstance(aPrime)));
-   }
+    @Nested
+    class Extraction {
+        private List<Flight> flights;
+
+        // START:SegmentAndFlight
+        record Segment(String origin, String destination, int distance) {
+            // ...
+            // END:SegmentAndFlight
+            boolean includes(String airportCode) {
+                return origin.equals(airportCode) || destination.equals(airportCode);
+            }
+            // START:SegmentAndFlight
+        }
+
+        record Flight(Segment segment, LocalDateTime dateTime) {
+            Flight(String origin, String destination, int distance, LocalDateTime dateTime) {
+                this(new Segment(origin, destination, distance), dateTime);
+            }
+
+            // ...
+            // END:SegmentAndFlight
+            boolean includes(String airportCode) {
+                return segment.includes(airportCode);
+            }
+            // START:SegmentAndFlight
+        }
+        // END:SegmentAndFlight
+
+        @BeforeEach
+        void setup() {
+            var dateTime = LocalDateTime.of(2025, MAY, 1, 9, 30);
+            flights = List.of(
+                new Flight("BWI", "ORD", 621, dateTime),
+                new Flight("BWI", "DEN", 1487, dateTime),
+                new Flight("BWI", "LGA", 185, dateTime),
+                new Flight("BWI", "LAX", 2324, dateTime),
+                new Flight("DEN", "ORD", 886, dateTime),
+                new Flight("DEN", "LGA", 1615, dateTime),
+                new Flight("DEN", "LAX", 861, dateTime)
+            );
+        }
+
+        // START:filterAndExtract
+        @Test
+        void filterAndExtract() {
+            // ...
+
+            assertThat(flights).filteredOn(flight -> flight.includes("DEN"))
+                .extracting("segment.distance")
+                .allMatch(distance -> Integer.parseInt(distance.toString()) < 1700);
+        }
+        // END:filterAndExtract
+    }
 }
