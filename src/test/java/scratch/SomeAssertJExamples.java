@@ -42,7 +42,7 @@ public class SomeAssertJExamples {
         void regex() {
             // START:regex
             assertThat(name).containsPattern(
-                compile("\\s+[big fat|small]\\s*"));
+                compile("\\s+(big fat|small)\\s+"));
             // END:regex
         }
 
@@ -60,7 +60,7 @@ public class SomeAssertJExamples {
         public void matchesFailure() {
             // START:failure
             assertThat(name).containsPattern(
-                compile("^my\\s+[big fat|small]\\s*\\w+$"));
+                compile("\\s+(large|little)\\s+"));
             // END:failure
         }
     }
