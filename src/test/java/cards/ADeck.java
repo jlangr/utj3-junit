@@ -60,6 +60,8 @@ public class ADeck {
    }
 
    // START:assertNotEquals
+   // ... other Deck tests here ...
+
    @Test
    void hasBeenShuffled() {
       var cards = deck.remaining();
