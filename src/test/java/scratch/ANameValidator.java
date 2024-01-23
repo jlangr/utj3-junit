@@ -38,11 +38,15 @@ class ANameValidator {
       assertThrows(NameValidationException.class, () ->
          validator.validate("Langr, Jeffrey,J."));
    }
+   // END:test
 
+   // START:doesNotThrow
    @Test
    void doesNotThrowWhenNoErrorsExist() {
       assertDoesNotThrow(() ->
          validator.validate("Langr, Jeffrey J."));
    }
+   // END:doesNotThrow
+   // START:test
 }
 // END:test
