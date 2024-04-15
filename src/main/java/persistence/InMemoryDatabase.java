@@ -27,7 +27,6 @@ public class InMemoryDatabase {
    public Customer get(String id) {
       return data.getOrDefault(id, null);
    }
-   // END:get
    // START:assertNotSame
 }
 // END:assertNotSame
