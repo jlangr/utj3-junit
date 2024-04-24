@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
 // START:assertNotEquals
@@ -26,7 +25,7 @@ public class ADeck {
             "9C", "9D", "9H", "9S", "10C", "10D", "10H", "10S",
             "JC", "JD", "JH", "JS", "QC", "QD", "QH", "QS",
             "KC", "KD", "KH", "KS"),
-         cards.stream().map(Card::toString).collect(toList()));
+         cards.stream().map(Card::toString).toList());
    }
 
    @Test
@@ -71,7 +70,7 @@ public class ADeck {
 
    // END:assertNotEquals
    private <T> List<T> sort(List<T> list) {
-      return list.stream().sorted().collect(toList());
+      return list.stream().sorted().toList();
    }
    // START:assertNotEquals
 }

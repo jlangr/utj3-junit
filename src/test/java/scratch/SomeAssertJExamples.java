@@ -67,6 +67,7 @@ public class SomeAssertJExamples {
 
    @Nested
    class ListContainmentAndSubsetPredicates {
+      @ExpectToFail
       // START:lists
       @Test
       public void simpleListTests() {
