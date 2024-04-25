@@ -11,25 +11,25 @@ public class SomeMathUtils {
    @Nested
    class FastHalf {
       // START:test
-      @Test
-      void ofZero() {
-         assertEquals(0, fastHalf(0));
-      }
+   @Test
+   void ofZero() {
+      assertEquals(0, fastHalf(0));
+   }
 
-      @Test
-      void roundsDownToZeroWhenOne() {
-         assertEquals(11, fastHalf(22));
-      }
+   @Test
+   void roundsDownToZeroWhenOne() {
+      assertEquals(11, fastHalf(22));
+   }
 
-      @Test
-      void handlesNegativeNumbers() {
-         assertEquals(-2, fastHalf(-4));
-      }
+   @Test
+   void handlesNegativeNumbers() {
+      assertEquals(-2, fastHalf(-4));
+   }
 
-      @Test
-      void roundsDownOddResults() {
-         assertEquals(10, fastHalf(21));
-      }
+   @Test
+   void roundsDownOddResults() {
+      assertEquals(10, fastHalf(21));
+   }
       //END:test
 
       //START:fastHalfLargeNumber
