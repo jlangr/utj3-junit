@@ -1,15 +1,16 @@
 package util;
 
-//START:test
 import org.junit.jupiter.api.Nested;
+//START:test
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static util.MathUtils.fastHalf;
 
 public class SomeMathUtils {
+   // END:test
    @Nested
    class FastHalf {
+      // START:test
       @Test
       void ofZero() {
          assertEquals(0, fastHalf(0));
@@ -45,7 +46,7 @@ public class SomeMathUtils {
       }
 //END:fastHalfLargeNumber
 //END:fastHalfLargeNumberInvert
-//START:test
    }
+//START:test
 }
 //END:test
