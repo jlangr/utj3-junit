@@ -45,6 +45,8 @@ class AnAccount {
    // START:assertTrue1
    @Test
    void hasPositiveBalanceAfterInitialDeposit() {
+      var account = new Account("an account name");
+
       account.deposit(50);
 
       // START_HIGHLIGHT
