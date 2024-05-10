@@ -7,18 +7,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // START:before
 class AnAccount {
-   Account account;
-
-   @BeforeEach
-   void createAccount() {
-      account = new Account("an account name");
-   }
+   Account account = new Account("an account name");
 
    @Test
    void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+      // ...
+      // END:before
       account.deposit(50);
 
       assertTrue(account.hasPositiveBalance());
+      // START:before
    }
    // ...
    // END:before
