@@ -58,6 +58,7 @@ class AnAccount {
    // START:assertTrue2
    @Test
    void depositIncreasesBalance() {
+      var account = new Account("an account name");
       var initialBalance = account.getBalance();
       account.deposit(100);
 
