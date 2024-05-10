@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // START:before
 class AnAccount {
-   // START:assertTrue0
    Account account;
 
    @BeforeEach
@@ -20,6 +19,8 @@ class AnAccount {
    // START:assertTrue0
    @Test
    void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+      var account = new Account("an account name");
+
       account.deposit(50);
 
       Assertions.assertTrue(account.hasPositiveBalance());
