@@ -87,6 +87,7 @@ class AnAccount {
       }
 
       @ExpectToFail
+      @Disabled
       // START:worthlessAssertMessage
       @Test
       void balanceRepresentsTotalOfDeposits() {
