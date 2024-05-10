@@ -60,11 +60,10 @@ class AnAccount {
    void depositIncreasesBalance() {
       var account = new Account("an account name");
       var initialBalance = account.getBalance();
+
       account.deposit(100);
 
-      var balance = account.getBalance();
-
-      assertTrue(balance > initialBalance);
+      assertTrue(account.getBalance() > initialBalance);
    }
    // END:assertTrue2
 
@@ -72,11 +71,10 @@ class AnAccount {
    @Test
    void depositIncreasesBalanceByAmountOfDeposit() {
       account.deposit(50);
+
       account.deposit(100);
 
-      var balance = account.getBalance();
-
-      assertEquals(150, balance);
+      assertEquals(150, account.getBalance());
    }
    // END:assertEquals0
 
