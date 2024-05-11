@@ -3,9 +3,9 @@ package persistence;
 
 // END:assertNotSameTest
 import org.junit.jupiter.api.Nested;
+import util.ExpectToFail;
 // START:assertNotSameTest
 import org.junit.jupiter.api.Test;
-import util.ExpectToFail;
 
 import static org.junit.jupiter.api.Assertions.*;
 
