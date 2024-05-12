@@ -3,7 +3,6 @@ package util;
 import org.junit.jupiter.api.Nested;
 //START:test
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static util.MathUtils.fastHalf;
 
