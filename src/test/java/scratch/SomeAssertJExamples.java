@@ -93,12 +93,9 @@ public class SomeAssertJExamples {
 
       // START:SegmentAndFlight
       record Segment(String origin, String destination, int distance) {
-         // ...
-         // END:SegmentAndFlight
-         boolean includes(String airportCode) {
-            return origin.equals(airportCode) || destination.equals(airportCode);
+         boolean includes(String airport) {
+            return origin.equals(airport) || destination.equals(airport);
          }
-         // START:SegmentAndFlight
       }
 
       record Flight(Segment segment, LocalDateTime dateTime) {
@@ -106,13 +103,10 @@ public class SomeAssertJExamples {
                 int distance, LocalDateTime dateTime) {
             this(new Segment(origin, destination, distance), dateTime);
          }
-         // ...
-         // END:SegmentAndFlight
 
-         boolean includes(String airportCode) {
-            return segment.includes(airportCode);
+         boolean includes(String airport) {
+            return segment.includes(airport);
          }
-         // START:SegmentAndFlight
       }
       // END:SegmentAndFlight
 
