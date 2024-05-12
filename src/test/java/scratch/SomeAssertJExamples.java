@@ -128,11 +128,10 @@ public class SomeAssertJExamples {
       @Test
       void filterAndExtract() {
          // ...
-
          assertThat(flights)
             .filteredOn(flight -> flight.includes("DEN"))
-            .extracting("segment.distance")
-            .allMatch(distance -> Integer.parseInt(distance.toString()) < 1700);
+            .extracting("segment.distance", Integer.class)
+            .allMatch(distance -> distance < 1700);
       }
       // END:filterAndExtract
    }
