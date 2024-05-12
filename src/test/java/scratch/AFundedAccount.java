@@ -5,11 +5,12 @@ import org.junit.jupiter.api.*;
 
 class AFundedAccount {
    Account account = new Account("Jeff");
-   // END:AFundedAccount
    AFundedAccount() {
+      // ...
+      // END:AFundedAccount
       System.out.printf("AFundedAccount(); %s balance = %d%n", account.name, account.balance);
+      // START:AFundedAccount
    }
-   // START:AFundedAccount
 
    @BeforeEach
    void fundAccount() {
