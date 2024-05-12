@@ -6,6 +6,8 @@ import util.ExpectToFail;
 import static org.junit.jupiter.api.Assertions.*;
 // START:lambdaException
 import static org.junit.jupiter.api.Assertions.assertThrows;
+// ...
+
 // END:lambdaException
 
 // START:before
