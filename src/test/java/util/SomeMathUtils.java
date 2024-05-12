@@ -3,50 +3,53 @@ package util;
 import org.junit.jupiter.api.Nested;
 //START:test
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static util.MathUtils.fastHalf;
 
 public class SomeMathUtils {
-   // END:test
-   @Nested
-   class FastHalf {
-      // START:test
-   @Test
-   void ofZero() {
-      assertEquals(0, fastHalf(0));
-   }
+    @Nested
+    class FastHalf {
+        @Test
+        void isZeroWhenZero() {
+            assertEquals(0, fastHalf(0));
+        }
 
-   @Test
-   void roundsDownToZeroWhenOne() {
-      assertEquals(11, fastHalf(22));
-   }
+        @Test
+        void roundsDownToZeroWhenOne() {
+            assertEquals(0, fastHalf(1));
+        }
 
-   @Test
-   void handlesNegativeNumbers() {
-      assertEquals(-2, fastHalf(-4));
-   }
+        @Test
+        void dividesEvenlyWhenEven() {
+            assertEquals(11, fastHalf(22));
+        }
 
-   @Test
-   void roundsDownOddResults() {
-      assertEquals(10, fastHalf(21));
-   }
-      //END:test
+        @Test
+        void roundsDownWhenOdd() {
+            assertEquals(10, fastHalf(21));
+        }
 
-      //START:fastHalfLargeNumber
+        @Test
+        void handlesNegativeNumbers() {
+            assertEquals(-2, fastHalf(-4));
+        }
+        //END:test
+
+        //START:fastHalfLargeNumber
 //START:fastHalfLargeNumberInvert
-      @Test
-      void handlesLargeNumbers() {
-         var number = 489_935_889_934_389_890L;
+        @Test
+        void handlesLargeNumbers() {
+            var number = 489_935_889_934_389_890L;
 //END:fastHalfLargeNumberInvert
-         assertEquals(244_967_944_967_194_945L, fastHalf(number));
+            assertEquals(244_967_944_967_194_945L, fastHalf(number));
 //END:fastHalfLargeNumber
 //START:fastHalfLargeNumberInvert
-         assertEquals(number, fastHalf(number) * 2);
+            assertEquals(number, fastHalf(number) * 2);
 //START:fastHalfLargeNumber
-      }
+        }
 //END:fastHalfLargeNumber
 //END:fastHalfLargeNumberInvert
-   }
-//START:test
+    }
 }
 //END:test
