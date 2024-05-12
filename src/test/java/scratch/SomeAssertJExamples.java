@@ -102,12 +102,13 @@ public class SomeAssertJExamples {
       }
 
       record Flight(Segment segment, LocalDateTime dateTime) {
-         Flight(String origin, String destination, int distance, LocalDateTime dateTime) {
+         Flight(String origin, String destination,
+                int distance, LocalDateTime dateTime) {
             this(new Segment(origin, destination, distance), dateTime);
          }
-
          // ...
          // END:SegmentAndFlight
+
          boolean includes(String airportCode) {
             return segment.includes(airportCode);
          }
