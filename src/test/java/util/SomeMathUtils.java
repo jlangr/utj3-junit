@@ -17,17 +17,22 @@ public class SomeMathUtils {
 
         @Test
         void roundsDownToZeroWhenOne() {
+            assertEquals(0, fastHalf(1));
+        }
+
+        @Test
+        void dividesEvenlyWhenEven() {
             assertEquals(11, fastHalf(22));
+        }
+
+        @Test
+        void roundsDownWhenOdd() {
+            assertEquals(10, fastHalf(21));
         }
 
         @Test
         void handlesNegativeNumbers() {
             assertEquals(-2, fastHalf(-4));
-        }
-
-        @Test
-        void roundsDownOddResults() {
-            assertEquals(10, fastHalf(21));
         }
         //END:test
 
