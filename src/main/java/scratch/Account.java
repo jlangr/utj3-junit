@@ -14,9 +14,8 @@ public class Account {
 
    // START:withdraw
    void withdraw(int dollars) {
-      if (balance < dollars) {
+      if (balance < dollars)
          throw new InsufficientFundsException("balance only " + balance);
-      }
       balance -= dollars;
    }
    // END:withdraw
