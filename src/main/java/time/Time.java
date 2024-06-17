@@ -1,8 +1,8 @@
 package time;
 
+// START:impl
 import static java.lang.String.format;
 
-// START:TimePool
 public record Time(byte hour, byte minute) {
    static String key(byte hour, byte minute) {
       return format("%d:%d", hour, minute);
@@ -13,3 +13,4 @@ public record Time(byte hour, byte minute) {
       return key(hour, minute);
    }
 }
+// END:impl

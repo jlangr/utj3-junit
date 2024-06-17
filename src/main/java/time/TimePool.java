@@ -1,5 +1,6 @@
 package time;
 
+// START:impl
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,3 +16,4 @@ public class TimePool {
          k -> new Time(hour, minute));
    }
 }
+// END:impl
