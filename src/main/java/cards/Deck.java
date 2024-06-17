@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+// START:impl
 public class Deck {
    private LinkedList<Card> cards;
 
@@ -33,3 +34,4 @@ public class Deck {
       return cards;
    }
 }
+// END:impl
