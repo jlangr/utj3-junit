@@ -1,6 +1,6 @@
-// START:assertNotSame
 package persistence;
 
+// START:assertNotSame
 import java.util.HashMap;
 import java.util.Map;
 
