@@ -21,6 +21,7 @@ class AnAccount {
    // ...
    // END:before
 
+   @Nested class SomeDifferentScope {
    // START:assertTrue0
    @Test
    void hasPositiveBalanceIsTrueAfterInitialDeposit() {
@@ -32,6 +33,7 @@ class AnAccount {
    }
    // ...
    // END:assertTrue0
+   }
 
    // START:assertFalse
    // START:assertTrueNot
