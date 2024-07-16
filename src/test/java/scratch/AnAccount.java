@@ -76,7 +76,7 @@ class AnAccount {
 
    // START:assertEquals0
    @Test
-   void depositIncreasesBalanceByAmountOfDeposit() {
+   void depositIncreasesBalanceByAmountDeposited() {
       account.deposit(50);
 
       account.deposit(100);
