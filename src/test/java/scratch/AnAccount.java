@@ -14,14 +14,18 @@ class AnAccount {
       account = new Account("an account name");
    }
 
+   // END:before
+   @Nested class SomeDifferentScope {
+   // START:before
    @Test
-   void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+   void hasPositiveBalanceAfterInitialDeposit() {
       account.deposit(50);
 
       assertTrue(account.hasPositiveBalance());
    }
    // ...
    // END:before
+   }
 
    @Test
    void doesNotHavePositiveBalanceWhenAccountCreated() {
