@@ -24,7 +24,7 @@ class AnAccount {
    @Nested class SomeDifferentScope {
    // START:assertTrue0
    @Test
-   void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+   void hasPositiveBalanceAfterInitialDeposit() {
       var account = new Account("an account name");
 
       account.deposit(50);
