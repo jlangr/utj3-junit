@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class AnAccount {
    Account account = new Account("an account name");
 
+   // END:before
+   @Nested class SomeDifferentiatingScope {
+   // START:before
    @Test
    void hasPositiveBalanceIsTrueAfterInitialDeposit() {
       // ...
@@ -20,6 +23,7 @@ class AnAccount {
    }
    // ...
    // END:before
+   }
 
    @Test
    void doesNotHavePositiveBalanceWhenAccountCreated() {
