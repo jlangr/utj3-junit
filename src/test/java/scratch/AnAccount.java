@@ -10,10 +10,10 @@ class AnAccount {
    Account account = new Account("an account name");
 
    // END:before
-   @Nested class SomeDifferentiatingScope {
+   @Nested class SomeDifferentScope {
    // START:before
    @Test
-   void hasPositiveBalanceIsTrueAfterInitialDeposit() {
+   void hasPositiveBalanceAfterInitialDeposit() {
       // ...
       // END:before
       account.deposit(50);
